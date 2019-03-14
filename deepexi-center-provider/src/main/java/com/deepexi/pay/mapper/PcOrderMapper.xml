@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deepexi.pay.mapper.PcOrderMapper">
+    <resultMap type="com.deepexi.pay.domain.dto.PcOrderDto" id="PcOrderDtoResult">
+        <result property="id" column="id" />
+        <result property="orderId" column="order_id" />
+        <result property="orderAmount" column="Order_Amount" />
+        <result property="discountMount" column="discount_mount" />
+        <result property="paymentAmount" column="payment_amount" />
+        <result property="orderStatus" column="order_status" />
+        <result property="payTime" column="pay_time" />
+        <result property="payAccount" column="pay_account" />
+        <result property="signStatus" column="sign_status" />
+        <result property="signer" column="signer" />
+        <result property="signTime" column="sign_time" />
+        <result property="payStatus" column="pay_status" />
+        <result property="enterpriseId" column="enterprise_id" />
+        <result property="addressId" column="address_id" />
+        <result property="dispatchingWay" column="dispatching_way" />
+        <result property="dispatchingTime" column="dispatching_time" />
+        <result property="dr" column="dr" />
+        <result property="createdBy" column="CREATED_BY" />
+        <result property="createdTime" column="CREATED_TIME" />
+        <result property="updatedBy" column="UPDATED_BY" />
+        <result property="updatedTime" column="UPDATED_TIME" />
+        <result property="payWay" column="pay_way" />
+        <result property="type" column="type" />
+    </resultMap>
+    <select id="findList" resultType="com.deepexi.pay.domain.eo.PcOrder">
+        SELECT * FROM pc_order WHERE 1=1
+    </select>
+
+    <update id="deleteByIds">
+        UPDATE pc_order set dr=1 where id in
+        <foreach collection="ids" index="index" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+</mapper>
